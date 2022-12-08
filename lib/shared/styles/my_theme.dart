@@ -20,58 +20,67 @@ class my_theme{
       scaffoldBackgroundColor: greenback,
       appBarTheme: AppBarTheme(
         iconTheme: IconThemeData(
-          color: black,
+          color: primarycolor,
         ),
         color: primarycolor,
-        centerTitle: true,
       ),
       textTheme: TextTheme(
           headline1:TextStyle(
-            fontSize: 30,fontWeight: FontWeight.bold,color: black,
+            fontSize: 22,fontWeight: FontWeight.bold,color: Colors.white,
           ),
-        subtitle1: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: black
+        subtitle1: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: black
+        ),
+        subtitle2: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: primarycolor
         ),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor:greenback,
-        selectedItemColor: black,
-        unselectedItemColor: Colors.white,
-      )
+        backgroundColor:Colors.transparent,
+        elevation: 0,
+        selectedItemColor: primarycolor,
+        unselectedItemColor: Colors.grey,
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: primarycolor,
+  )
   );
   static ThemeData darktmode = ThemeData(
-      primaryColor: darkc,
+      primaryColor: primarycolor,
       colorScheme:ColorScheme(onError: Colors.white,
           onSecondary: Colors.white,
           error: Colors.red,
           background: Colors.transparent,
           onPrimary: Colors.white,
-          primary: darkc,
-          brightness: Brightness.dark,
-          onBackground: darkc,
+          primary: primarycolor,
+          brightness: Brightness.light,
+          onBackground: black,
           onSurface: Colors.white,
-          secondary: darkc,
+          secondary: black,
           surface: Colors.grey) ,
-      scaffoldBackgroundColor: greenback,
+      scaffoldBackgroundColor: darkc,
       appBarTheme: AppBarTheme(
         iconTheme: IconThemeData(
-          color: Colors.white,
+          color: primarycolor,
         ),
-        color:primarycolor,
-        centerTitle: true,
+        color: primarycolor,
       ),
       textTheme: TextTheme(
-          headline1:TextStyle(
-            fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white,
-          ),
-          subtitle1: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color:Colors.white
-          )
-
+        headline1:TextStyle(
+          fontSize: 22,fontWeight: FontWeight.bold,color: Colors.white,
+        ),
+        subtitle1: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: black
+        ),
+        subtitle2: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: primarycolor
+        ),
       ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor:darkc,
-      selectedItemColor: darkc,
-      unselectedItemColor: Colors.white,
-    )
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor:Colors.transparent,
+        elevation: 0,
+        selectedItemColor: primarycolor,
+        unselectedItemColor: Colors.grey,
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: primarycolor,
+      )
   );
 
 }

@@ -2,6 +2,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/layout/home_layout.dart';
 import 'package:todo/provider/myprovider_layout.dart';
+import 'package:todo/provider/provider_add_task.dart';
 import 'package:todo/provider/provider_settings.dart';
 import 'package:todo/shared/styles/my_theme.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,8 @@ void main() {
           create: (context)=>providerlayout()),
       ChangeNotifierProvider(
           create: (context)=>providersettings()),
+      ChangeNotifierProvider(
+          create: (context)=>provideraddtask()),
     ],
       child: MyApp()));
 }

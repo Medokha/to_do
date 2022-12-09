@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/modules/settings/settings.dart';
+import 'package:todo/modules/tasks_list/button_sheet.dart';
 import 'package:todo/modules/tasks_list/tasks_list.dart';
 import 'package:todo/provider/myprovider_layout.dart';
 import 'package:todo/shared/styles/my_theme.dart';
@@ -27,7 +28,9 @@ class homelayout extends StatelessWidget {
             width: 3
           )
         ),
-        onPressed: () {  },
+        onPressed: () {
+          showtaskbottonsheet(context);
+        },
         child: Icon(Icons.add),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -48,5 +51,9 @@ class homelayout extends StatelessWidget {
       body: tabs[pro.curentindex],
     );
   }
+  void showtaskbottonsheet(BuildContext context){
+    showModalBottomSheet(context: context,
+        builder: (context) => buttonsheet());
+}
   List<Widget> tabs =[taskslist(),settings()];
 }

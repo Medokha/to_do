@@ -1,6 +1,17 @@
 {
   "language": "Language",
-  "mode": "Mode"
+  "mode": "Mode",
+  "light": "Light",
+  "dark": "Dark",
+  "english": "English",
+  "arabic": "Arabic",
+  "delete": "Delete",
+  "edite": "Edite",
+  "done": "Done",
+  "titel": "Titel",
+  "description": "Description"
+
+
 
 
 }

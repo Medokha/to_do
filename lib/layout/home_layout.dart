@@ -53,7 +53,11 @@ class homelayout extends StatelessWidget {
   }
   void showtaskbottonsheet(BuildContext context){
     showModalBottomSheet(context: context,
-        builder: (context) => buttonsheet());
+        isScrollControlled: true,
+        builder: (context) => Padding(
+            padding:EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: buttonsheet(),
+        ));
 }
   List<Widget> tabs =[taskslist(),settings()];
 }

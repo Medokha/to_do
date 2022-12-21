@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../provider/provider_settings.dart';
 import '../../shared/styles/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class mode extends StatelessWidget {
   // final List<String> modes = ['Light', 'Dark'];

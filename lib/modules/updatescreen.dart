@@ -1,48 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/models/taskes.dart';
-import 'package:todo/provider/provider_add_task.dart';
 import 'package:todo/provider/provider_settings.dart';
-import 'package:todo/shared/network/local/firebse_utils.dart';
-import 'package:todo/shared/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../models/taskes.dart';
+import '../provider/provider_add_task.dart';
+import '../shared/components/components.dart';
+import '../shared/network/local/firebse_utils.dart';
+import '../shared/styles/colors.dart';
 
-import '../../shared/components/components.dart';
+class updatescreen extends StatefulWidget {
+  taskedate task;
+  updatescreen(this.task);
 
-class buttonsheet extends StatefulWidget {
   @override
-  State<buttonsheet> createState() => _buttonsheetState();
+  State<updatescreen> createState() => _updatescreenState();
 }
 
-class _buttonsheetState extends State<buttonsheet> {
+class _updatescreenState extends State<updatescreen> {
   var titelcontroler = TextEditingController();
-
   var descriptionlcontroler = TextEditingController();
-
-  GlobalKey<FormState> formkey= GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     var pro =Provider.of<provideraddtask>(context);
     var proset =Provider.of<providersettings>(context);
-
     return Container(
-      color:proset.dropdownvalue2==ThemeMode.light?Colors.white:darkc,
+      color:  proset.dropdownvalue2==ThemeMode.light?Colors.white:darkc,
       child: Container(
         margin: EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Add New Task",
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 30,
-              color: proset.dropdownvalue2==ThemeMode.light?primarycolor:green),),
+            Text("Edite Task",style: Theme.of(context).textTheme.subtitle1?.
+            copyWith(fontSize: 20,
+                color: proset.dropdownvalue2==ThemeMode.light?black:green),),
             SizedBox(
               height: MediaQuery.of(context).size.height*.01,
             ),
             Form(
-              key: formkey,
+                // key: formkey,
                 child: Column(
                   children: [
                     TextFormField(
@@ -54,13 +50,13 @@ class _buttonsheetState extends State<buttonsheet> {
                         return null;
                       },
                       decoration: InputDecoration(
-                        label: Text(AppLocalizations.of(context)!.titel,style: TextStyle(fontSize: 20,
-                            color:proset.dropdownvalue2==ThemeMode.light?black:Colors.white ),),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: primarycolor,
+                          label: Text('${AppLocalizations.of(context)!.titel}: ${widget.task.titel}',style: TextStyle(fontSize: 20,
+                              color: proset.dropdownvalue2==ThemeMode.light?black:Colors.white),),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: primarycolor,
+                              )
                           )
-                        )
                       ),
                     ),
                     SizedBox(
@@ -76,8 +72,8 @@ class _buttonsheetState extends State<buttonsheet> {
                         return null;
                       },
                       decoration: InputDecoration(
-                          label: Text(AppLocalizations.of(context)!.description,style: TextStyle(fontSize: 20,
-                              color:proset.dropdownvalue2==ThemeMode.light?black:Colors.white),),
+                          label: Text('${AppLocalizations.of(context)!.description}: ${widget.task.description}',style: TextStyle(fontSize: 20,
+                              color: proset.dropdownvalue2==ThemeMode.light?black:Colors.white),),
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: primarycolor,
@@ -91,8 +87,7 @@ class _buttonsheetState extends State<buttonsheet> {
               height: MediaQuery.of(context).size.height*.01,
             ),
             Text("Select Date ",
-                style: Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 20,
-                    color:proset.dropdownvalue2==ThemeMode.light?black:Colors.white)),
+                style: Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 20)),
             SizedBox(
               height: MediaQuery.of(context).size.height*.01,
             ),
@@ -101,7 +96,7 @@ class _buttonsheetState extends State<buttonsheet> {
                 pro.showpiker(context);
               },
               child: Text("${pro.selecttime.year}/${pro.selecttime.month}/${pro.selecttime.day}",
-                  style: Theme.of(context).textTheme.subtitle2?.copyWith(fontSize: 15,),
+                style: Theme.of(context).textTheme.subtitle2?.copyWith(fontSize: 15,),
                 textAlign: TextAlign.center,),
             ),
             SizedBox(
@@ -109,37 +104,38 @@ class _buttonsheetState extends State<buttonsheet> {
             ),
             ElevatedButton(
                 onPressed: (){
-                  if(formkey.currentState!.validate()){
-                    taskedate task =taskedate(titel: titelcontroler.text,
-                        description: descriptionlcontroler.text,
-                        date: DateUtils.dateOnly(pro.selecttime).microsecondsSinceEpoch);
-                    showloading(context,'Looding...');
-                    addtaskFirebaseFirestore(task).then((value) => {
-                      hidelooding((context)),
-                      showmassage(context,'Task Added','OK',(){
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                      },ngmassage: 'Cancel',ngtaction: (){
-                        //shoud be delete from data base
-                        // .
-                        // .
-                        // .
-                        // .
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                      }),
-                    }).catchError((error){
-                      print(error);
-                      });
+                  if(titelcontroler.text==''){
+                    titelcontroler.text= widget.task.titel;
                   }
+                  if(descriptionlcontroler.text==''){
+                    descriptionlcontroler.text= widget.task.description;
+                  }
+                  widget.task.titel=titelcontroler.text;
+                      widget.task.description= descriptionlcontroler.text;
+                      widget.task.date= DateUtils.dateOnly(pro.selecttime).microsecondsSinceEpoch;
+
+
+                  showloading(context, 'Looding ... ');
+                  updatedataFirebase(widget.task.id,widget.task).then((value) {
+                    hidelooding((context));
+                    showmassage(context,'Task Change','OK',(){
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    },ngmassage: 'Cancel',ngtaction: (){
+                    //shoud be delete from data base
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    });
+                  }).catchError((error){
+                    print(error);
+                  });
                 },
-                child: Text('Add Task ',
+                child: Text('Save Change ',
                   style: Theme.of(context).textTheme.subtitle1?.
                   copyWith(fontSize: 15,color: Colors.white),))
           ],
         ),
       ),
-
     );
   }
 }

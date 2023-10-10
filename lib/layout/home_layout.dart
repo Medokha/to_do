@@ -16,7 +16,7 @@ class homelayout extends StatelessWidget {
     var pro = Provider.of<providerlayout>(context);
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height*.2,
+        // toolbarHeight: MediaQuery.of(context).size.height*.2,
         title: Text('${pro.curentindex==0? name[0] : name[1]}',
         style: Theme.of(context).textTheme.headline1,),
       ),

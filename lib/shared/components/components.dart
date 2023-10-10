@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 showloading(BuildContext context,String massage){
   showDialog(
@@ -39,4 +40,10 @@ void showmassage(BuildContext context,
       actions: actions,
     );
   });
+}
+
+// function to formate date
+String formatdate(DateTime dateTime){
+  DateFormat fomatter =DateFormat('dd/mm/yyyy');
+  return fomatter.format(dateTime);
 }

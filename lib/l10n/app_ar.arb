@@ -1,0 +1,14 @@
+{
+  "language": "اللغه",
+  "mode": "الوضع",
+  "light": "فاتح",
+  "dark": "داكن",
+  "english": "انجليزى",
+  "arabic": "عربى",
+  "delete": "حذف",
+  "edite": "تعديل",
+  "done": "تم",
+
+  "titel": "عنوان",
+  "description": "وصف"
+}
